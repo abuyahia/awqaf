@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' https: data:;
+                 img-src 'self' https: data:;
+                 style-src 'self' 'unsafe-inline' https:;
+                 script-src 'self' 'unsafe-inline' https:;
+                 font-src 'self' https: data;">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>أوقاف جامعة الملك خالد</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f7f9fa;
+      --text:#1f2d2a;
+      --muted:#5d6e6a;
+      --brand:#0b5d44;
+      --brand-2:#084f3a;
+      --brand-3:#0e7a58;
+      --card:#ffffff;
+      --border:#e4ece9;
+      --focus:#ffd54f;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+      --radius:14px;
+      --container:1200px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Tajawal',system-ui,-apple-system,"Segoe UI",Roboto,Arial}
+    a{color:var(--brand-3);text-decoration:none}
+    a:hover{text-decoration:underline}
+    img{max-width:100%;height:auto}
+
+    .skip-link{position:absolute;inset-inline-start:10px;top:-40px;background:#fff;color:#000;padding:8px 12px;border-radius:8px;box-shadow:var(--shadow);transition:top .2s}
+    .skip-link:focus{top:10px;outline:3px solid var(--focus)}
+
+    /* ===== Header ===== */
+    header.site-header{position:sticky;top:0;z-index:1000;background:var(--brand-2);color:#fff;box-shadow:0 4px 16px rgba(0,0,0,.15)}
+    .topbar{max-width:var(--container);margin:auto;display:flex;align-items:center;gap:18px;padding:10px 16px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+    .brand img{width:44px;height:44px;object-fit:contain}
+    .brand .title{line-height:1.1}
+    .brand .title small{display:block;font-weight:400;opacity:.9}
+
+    nav.main-nav{margin-inline-start:auto}
+    .menu{display:flex;gap:12px;list-style:none;margin:0;padding:0}
+    .menu>li>a{color:#fff;font-weight:600;padding:10px 12px;border-radius:10px;display:inline-flex;align-items:center;gap:6px}
+    .menu>li>a:hover,.menu>li>a:focus{background:rgba(255,255,255,.12);outline:none}
+    .menu .caret{font-size:.9em;opacity:.9}
+
+    /* Dropdown base (desktop) */
+    .menu li{position:relative}
+    .submenu{
+      position:absolute;top:100%;right:0;background:#fff;color:var(--text);
+      min-width:220px;border-radius:12px;box-shadow:var(--shadow);border:1px solid var(--border);
+      display:none;flex-direction:column;padding:6px
+    }
+    .submenu a{color:var(--text);padding:10px 12px;border-radius:8px}
+    .submenu a:hover{background:#f1f4f3}
+    /* hover on desktop */
+    @media (min-width: 993px){
+      .menu li:hover>.submenu{display:flex}
+    }
+
+    /* Burger / mobile menu */
+    .burger{display:none;background:transparent;border:0;color:#fff;font-size:28px;cursor:pointer}
+    @media (max-width: 992px){
+      .burger{display:inline-flex}
+      .menu{
+        display:none;position:fixed;inset-inline:0;top:64px;background:var(--brand-2);
+        flex-direction:column;padding:10px 12px;border-top:1px solid rgba(255,255,255,.15);max-height:70vh;overflow:auto
+      }
+      .menu.show{display:flex}
+      .menu>li{border-top:1px solid rgba(255,255,255,.18);padding-block:6px}
+      .menu>li>a{width:100%}
+      .submenu{
+        position:static;background:#00392b;color:#fff;border:none;box-shadow:none;border-radius:10px;margin-top:6px;padding:6px 0;display:none
+      }
+      .submenu a{color:#fff;padding:10px 14px}
+      .submenu a:hover{background:rgba(255,255,255,.12)}
+      .menu li.open>.submenu{display:flex}
+    }
+
+    /* ===== Layout & components ===== */
+    .container{max-width:var(--container);margin:auto;padding:28px 16px}
+    .hero{background:linear-gradient(135deg,#e9f5f1,#f5fbf9);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:48px 28px;text-align:center}
+    .hero h1{margin:0 0 10px 0}
+    .btn{display:inline-block;background:var(--brand);color:#fff;padding:12px 20px;border-radius:12px;font-weight:700}
+    .btn:hover{background:var(--brand-3)}
+    .grid{display:grid;gap:18px}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .grid-2{grid-template-columns:repeat(2,1fr)}
+    @media (max-width: 900px){.grid-3,.grid-2{grid-template-columns:1fr}}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    h2.section-title{margin:30px 0 12px}
+    .list-clean{margin:0;padding:0;list-style:none}
+    .meta{color:var(--muted);font-size:.95rem}
+    form label{display:block;margin:.6rem 0 .2rem}
+    form input,form select,form textarea{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:#fff}
+    form .actions{display:flex;gap:10px;align-items:center;margin-top:10px}
+
+    /* ===== Footer ===== */
+    footer.site-footer{margin-top:48px;background:var(--brand-2);color:#fff}
+    .footer-top{border-bottom:1px solid rgba(255,255,255,.15)}
+    .footer-grid{max-width:var(--container);margin:auto;padding:28px 16px;display:grid;gap:18px;grid-template-columns:2fr 2fr 2fr 1.2fr}
+    .footer-col h4{margin:0 0 10px 0}
+    .footer-col a{color:#eafff7}
+    .social{display:flex;gap:10px;margin:10px 0}
+    .store-badges img{width:38px;height:38px}
+    .footer-bottom{max-width:var(--container);margin:auto;padding:16px;color:#e8fffa;display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between;align-items:center}
+    .footer-logos{display:flex;align-items:center;gap:18px;opacity:.95}
+    .footer-logos img{height:40px}
+    .legal-links{display:flex;gap:16px;flex-wrap:wrap}
+    .copy{opacity:.9}
+
+    .a11y-btn{position:fixed;inset-inline-end:16px;bottom:16px;width:52px;height:52px;border-radius:50%;background:#fff;border:2px solid var(--brand);color:var(--brand);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);cursor:pointer}
+    .a11y-btn:focus{outline:3px solid var(--focus)}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">تخطي إلى المحتوى</a>
+
+  <!-- ===== Header (شعار جديد awqaflogo.png) ===== -->
+  <header class="site-header" role="banner" aria-label="رأس الصفحة">
+    <div class="topbar">
+      <div class="brand" aria-label="الشعار والهوية">
+        <img src="awqaflogo.png" alt="شعار أوقاف جامعة الملك خالد">
+        <div class="title">
+          أوقاف جامعة الملك خالد
+          <small>King Khalid University Endowments</small>
+        </div>
+      </div>
+
+      <button class="burger" aria-label="فتح القائمة" aria-controls="mainmenu" aria-expanded="false">☰</button>
+
+      <!-- 6 تبويبات رئيسية فقط + تفريعات بداخلها -->
+      <nav class="main-nav" role="navigation" aria-label="التنقل الرئيسي">
+        <ul id="mainmenu" class="menu">
+          <li><a href="#home">الرئيسية</a></li>
+
+          <li>
+            <a href="#about" class="has-sub">عن الأوقاف <span class="caret">▾</span></a>
+            <div class="submenu" role="menu">
+              <a href="#vision" role="menuitem">الرؤية والرسالة</a>
+              <a href="#goals" role="menuitem">الأهداف</a>
+              <a href="#board" role="menuitem">مجلس النظارة</a>
+              <a href="#about" role="menuitem">نبذة عامة</a>
+            </div>
+          </li>
+
+          <li>
+            <a href="#donate" class="has-sub">التبرع <span class="caret">▾</span></a>
+            <div class="submenu" role="menu">
+              <a href="#donate-form" role="menuitem">نموذج التبرع</a>
+              <a href="#donate-options" role="menuitem">أنواع الأوقاف</a>
+              <a href="#impact" role="menuitem">تتبّع الأثر</a>
+            </div>
+          </li>
+
+          <li>
+            <a href="#assets" class="has-sub">الأصول <span class="caret">▾</span></a>
+            <div class="submenu" role="menu">
+              <a href="#realestate" role="menuitem">العقارات</a>
+              <a href="#investments" role="menuitem">الاستثمارات</a>
+              <a href="#projects" role="menuitem">المشاريع والبرامج</a>
+              <a href="#gis" role="menuitem">الخريطة التفاعلية (GIS)</a>
+            </div>
+          </li>
+
+          <li>
+            <a href="#reports" class="has-sub">التقارير <span class="caret">▾</span></a>
+            <div class="submenu" role="menu">
+              <a href="#annual" role="menuitem">التقرير السنوي</a>
+              <a href="#financial" role="menuitem">التقارير المالية</a>
+              <a href="#dashboard" role="menuitem">لوحة المؤشرات</a>
+              <a href="#policies" role="menuitem">السياسات والحوكمة</a>
+            </div>
+          </li>
+
+          <li>
+            <a href="#contact" class="has-sub">تواصل <span class="caret">▾</span></a>
+            <div class="submenu" role="menu">
+              <a href="#faq" role="menuitem">الأسئلة الشائعة</a>
+              <a href="#contact-form" role="menuitem">نموذج التواصل</a>
+              <a href="mailto:endowments@kku.edu.sa" role="menuitem">endowments@kku.edu.sa</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Main (جميع المحتوى محفوظ كما هو) ===== -->
+  <main id="main">
+    <section id="home" class="container">
+      <div class="hero">
+        <h1>منصة أوقاف جامعة الملك خالد</h1>
+        <p class="meta">نُعزز الاستدامة المالية والتعليم والبحث وخدمة المجتمع عبر منظومة وقفية شفافة وفعّالة.</p>
+        <a href="#donate" class="btn">تبرّع الآن</a>
+      </div>
+    </section>
+
+    <section id="about" class="container">
+      <h2 class="section-title">عن الأوقاف</h2>
+      <div class="grid grid-3">
+        <div class="card" id="vision"><h3>الرؤية</h3><p>ريادة مستدامة تدعم الجامعة والمجتمع.</p></div>
+        <div class="card"><h3>الرسالة</h3><p>تنمية وإدارة الأوقاف بكفاءة وشفافية وامتثال.</p></div>
+        <div class="card" id="goals"><h3>الأهداف</h3>
+          <ul class="list-clean"><li>تعزيز التمويل الذاتي</li><li>دعم البحث والابتكار</li><li>برامج مجتمعية مؤثرة</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="donate" class="container">
+      <h2 class="section-title">التبرع الآن</h2>
+      <div class="grid grid-2">
+        <form class="card" id="donateForm" novalidate>
+          <label for="dn-name">الاسم الكامل</label>
+          <input id="dn-name" name="name" type="text" required autocomplete="name" />
+          <label for="dn-mail">البريد الإلكتروني</label>
+          <input id="dn-mail" name="email" type="email" required autocomplete="email" />
+          <label for="dn-amount">مبلغ التبرع (ر.س)</label>
+          <input id="dn-amount" name="amount" type="number" min="1" step="1" required />
+          <label for="dn-type">نوع الوقف</label>
+          <select id="dn-type" name="type" required>
+            <option value="">— اختر نوع الوقف —</option>
+            <option>وقف تعليمي</option>
+            <option>وقف بحثي</option>
+            <option>وقف صحي</option>
+            <option>وقف مجتمعي</option>
+          </select>
+          <div class="actions">
+            <button class="btn" type="submit">متابعة الدفع الآمن</button>
+            <span class="meta">سيتم التوجيه لاحقًا إلى بوابة الدفع (HTTPS).</span>
+          </div>
+        </form>
+
+        <div class="card" id="donate-options">
+          <h3>مزايا التبرع عبر المنصة</h3>
+          <ul><li>إيصال فوري عبر البريد</li><li>تبرع دوري (شهري/سنوي)</li><li>تتبّع أثر التبرع</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="assets" class="container">
+      <h2 class="section-title">أصولنا الوقفية</h2>
+      <div class="grid grid-3">
+        <div class="card" id="realestate"><h3>عقارات</h3><p>بيانات المواقع والعوائد وخطط الصيانة.</p></div>
+        <div class="card" id="investments"><h3>استثمارات</h3><p>محافظ متنوعة بإدارة حوكمية.</p></div>
+        <div class="card" id="projects"><h3>مشاريع إنشائية</h3><p>مشاريع رأسمالية بعوائد مستدامة.</p></div>
+      </div>
+      <p class="meta" id="gis">* خريطة تفاعلية (GIS) تُدمج لاحقًا.</p>
+    </section>
+
+    <section id="reports" class="container">
+      <h2 class="section-title">التقارير والشفافية</h2>
+      <div class="card">
+        <p>هنا تُعرض التقارير المالية والسنوية ولوحات المؤشرات (KPIs) للمتابعة والحوكمة.</p>
+        <ul>
+          <li id="annual"><a href="#">التقرير السنوي 2024 (PDF)</a></li>
+          <li id="financial"><a href="#">ملخّص الأداء ربع السنوي</a></li>
+          <li id="dashboard"><a href="#">لوحة مؤشرات مباشرة (Dashboard)</a></li>
+          <li id="policies"><a href="#">السياسات والحوكمة</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="faq" class="container">
+      <h2 class="section-title">الأسئلة الشائعة</h2>
+      <div class="card">
+        <details><summary>ما هو الوقف؟</summary><p>الوقف هو حبس الأصل وتسبيل المنفعة في أوجه الخير.</p></details>
+        <details><summary>كيف أضمن وصول تبرعي؟</summary><p>تُصدر المنصة إيصالًا فوريًا، وتُعرض تقارير الأثر دورياً.</p></details>
+      </div>
+    </section>
+
+    <section id="contact" class="container">
+      <h2 class="section-title">اتصل بنا</h2>
+      <div class="grid grid-2">
+        <form class="card" id="contactForm" novalidate>
+          <label for="c-name">الاسم</label>
+          <input id="c-name" name="name" required />
+          <label for="c-mail">البريد</label>
+          <input id="c-mail" type="email" name="email" required />
+          <label for="c-msg">الرسالة</label>
+          <textarea id="c-msg" name="message" rows="5" required></textarea>
+          <div class="actions">
+            <button class="btn" type="submit">إرسال</button>
+            <span class="meta">نرد خلال 2–3 أيام عمل.</span>
+          </div>
+        </form>
+        <div class="card" id="contact-form">
+          <h3>بيانات التواصل</h3>
+          <p class="meta">الهاتف: 0172418000<br>البريد: <a href="mailto:endowments@kku.edu.sa">endowments@kku.edu.sa</a></p>
+          <p class="meta">العنوان: جامعة الملك خالد – المملكة العربية السعودية</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer" role="contentinfo" aria-label="تذييل الصفحة">
+    <div class="footer-top">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>نظرة عامة</h4>
+          <ul class="list-clean">
+            <li><a href="#">سهولة الوصول</a></li>
+            <li><a href="#">دليل الهوية المؤسسية</a></li>
+            <li><a href="#">المصادر المفتوحة</a></li>
+            <li><a href="#">حرية المعلومات</a></li>
+            <li><a href="#">ميثاق العملاء</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>الدعم والمساعدة</h4>
+          <ul class="list-clean">
+            <li><a href="#">الأسئلة الشائعة</a></li>
+            <li><a href="#">الإبلاغ عن الفساد</a></li>
+            <li><a href="#">بلاغات الأمن السيبراني</a></li>
+            <li><a href="#">تقديم شكوى</a></li>
+            <li><a href="mailto:basher@kku.edu.sa">البريد الإلكتروني</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>روابط ذات صلة</h4>
+          <ul class="list-clean">
+            <li><a href="https://www.vision2030.gov.sa/" target="_blank" rel="noopener">رؤية المملكة 2030</a></li>
+            <li><a href="https://www.my.gov.sa" target="_blank" rel="noopener">منصة الخدمات الموحدة</a></li>
+            <li><a href="https://sdaia.gov.sa" target="_blank" rel="noopener">سدايا</a></li>
+            <li><a href="https://nca.gov.sa" target="_blank" rel="noopener">الهيئة الوطنية للأمن السيبراني</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>تابعنا</h4>
+          <div class="social" aria-label="روابط التواصل">
+            <a aria-label="X" href="#" title="X">🕊️</a>
+            <a aria-label="Instagram" href="#" title="Instagram">📷</a>
+            <a aria-label="YouTube" href="#" title="YouTube">▶️</a>
+            <a aria-label="Snapchat" href="#" title="Snapchat">👻</a>
+          </div>
+          <div class="store-badges" aria-label="متاجر التطبيقات">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/apple.svg" alt="Apple" />
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/googleplay.svg" alt="Google Play" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-logos" aria-label="شعارات">
+        <img src="https://www.vision2030.gov.sa/themes/custom/vision/img/logo.svg" alt="رؤية 2030">
+        <img src="https://www.kku.edu.sa/themes/custom/kku/logo.png" alt="جامعة الملك خالد" />
+      </div>
+      <div class="legal-links">
+        <a href="#">خريطة الموقع</a>
+        <a href="#">سياسة الخصوصية</a>
+        <a href="#">الشروط والأحكام</a>
+      </div>
+      <div class="copy">
+        <span id="lastUpdate">تاريخ آخر تحديث: <time></time></span> — © <span id="year"></span> أوقاف جامعة الملك خالد
+      </div>
+    </div>
+  </footer>
+
+  <button class="a11y-btn" title="تفضيلات الوصول" aria-label="تفضيلات الوصول">♿</button>
+
+  <script>
+    // زر القائمة (جوال)
+    const burger = document.querySelector('.burger');
+    const menu   = document.getElementById('mainmenu');
+    burger?.addEventListener('click', ()=>{
+      const open = menu.classList.toggle('show');
+      burger.setAttribute('aria-expanded', String(open));
+    });
+
+    // فتح/إغلاق القوائم الفرعية بالضغط على الجوال
+    document.querySelectorAll('.menu > li > a.has-sub').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        if(window.innerWidth <= 992){
+          e.preventDefault();
+          a.parentElement.classList.toggle('open');
+        }
+      });
+    });
+
+    // سنة وتاريخ التحديث
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const t = document.querySelector('#lastUpdate time');
+    if(t){ t.textContent = new Date().toLocaleDateString('ar-SA', {year:'numeric',month:'2-digit',day:'2-digit'}); }
+
+    // تحقق بسيط للنماذج
+    function validate(form){
+      const invalid = [...form.querySelectorAll('[required]')].filter(el => !el.value?.trim());
+      invalid.forEach(el=> el.style.borderColor='#d32f2f');
+      return invalid.length === 0;
+    }
+    document.getElementById('donateForm')?.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      if(!validate(e.target)) return alert('فضلاً أكمل الحقول المطلوبة.');
+      alert('سيتم تحويلك إلى بوابة الدفع الآمن…');
+    });
+    document.getElementById('contactForm')?.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      if(!validate(e.target)) return alert('فضلاً أكمل الحقول المطلوبة.');
+      alert('تم إرسال رسالتك، شكرًا لتواصلك.');
+    });
+  </script>
+</body>
+</html>
